@@ -51,6 +51,6 @@ public class UserController {
 	@GetMapping("/say-hello")
 	public String sayHello() {
 
-		return "Hello Guru!!!";
+		return "Hello Guru!";
 	}
 }
