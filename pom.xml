@@ -66,6 +66,11 @@
 			<artifactId>webdrivermanager</artifactId>
 			<version>5.6.4</version>
 		</dependency>
+		<dependency>
+			<groupId>com.azure.spring</groupId>
+			<artifactId>azure-spring-boot-starter</artifactId>
+			<version>3.0.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -117,6 +122,17 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.microsoft.azure</groupId>
+				<artifactId>azure-webapp-maven-plugin</artifactId>
+				<version>2.4.0</version>
+				<configuration>
+					<resourceGroup>sapsf-rpa</resourceGroup>
+					<appName>sapsf-rpa</appName>
+					<region>South India</region>
+					<runtime>java|17-java17</runtime>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
