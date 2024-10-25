@@ -72,7 +72,6 @@
 			<version>3.0.0</version>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -116,7 +115,7 @@
 							<resources>
 								<resource>
 									<directory>
-										../SAPSF_RPA_CLIENT/dist/sapsf-rpa-client</directory>
+										../SAPSF_RPA_CLIENT/dist</directory>
 								</resource>
 							</resources>
 						</configuration>
@@ -136,5 +135,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
