@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.1.4</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.rpa.sapsf</groupId>
 	<artifactId>SAPSF_RPA</artifactId>
@@ -125,13 +122,35 @@
 			<plugin>
 				<groupId>com.microsoft.azure</groupId>
 				<artifactId>azure-webapp-maven-plugin</artifactId>
-				<version>2.4.0</version>
-				<configuration>
-					<resourceGroup>sapsf-rpa</resourceGroup>
-					<appName>sapsf-rpa</appName>
-					<region>South India</region>
-					<runtime>java|17-java17</runtime>
-				</configuration>
+				<version>2.9.0</version>
+			    <configuration>
+			        <schemaVersion>v2</schemaVersion>
+			        <resourceGroup>sapsf-rpa</resourceGroup>
+			        <appName>sapsf-rpa</appName>
+			        <pricingTier>P1v2</pricingTier>
+			        <region>centralus</region>
+			        <runtime>
+			            <os>Linux</os>
+			            <javaVersion>Java 17</javaVersion>
+			            <webContainer>Tomcat 10.0</webContainer>
+			        </runtime>
+			        <appSettings>
+						<property>
+							<name>JAVA_OPTS</name>
+							<value>-Dserver.port=80</value>
+						</property>
+					</appSettings>
+			        <deployment>
+			            <resources>
+			                <resource>
+			                    <directory>${project.basedir}/target</directory>
+			                    <includes>
+			                        <include>*.war</include>
+			                    </includes>
+			                </resource>
+			            </resources>
+			        </deployment>
+			    </configuration>
 			</plugin>
 		</plugins>
 	</build>
