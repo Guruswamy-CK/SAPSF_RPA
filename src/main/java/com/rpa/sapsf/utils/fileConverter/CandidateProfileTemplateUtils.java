@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,6 +25,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
@@ -2099,12 +2102,15 @@ public class CandidateProfileTemplateUtils {
 	}
 
 	public static String buildExcelFile(CandidateProfileTemplateDTO candidateProfileTemplateXmlData, String fileName) {
-		File sourceFile = new File(
-				"src\\main\\resources\\templates\\REC_Templates\\Candidate_Profile_RPA_Template.xlsx");
-		File destinationFile = new File("src\\main\\resources\\templates\\" + fileName + ".xlsx");
 		try {
-			FileUtils.copyFile(sourceFile, destinationFile);
+			Resource resource = new ClassPathResource("classpath:Candidate_Profile_RPA_Template.xlsx");
+			InputStream inputStream = resource.getInputStream();
+			//File sourceFile = new File("Candidate_Profile_RPA_Template.xlsx");
+			File newFile = new File(fileName + ".xlsx");
+			FileUtils.copyInputStreamToFile(inputStream, newFile);
+			//FileUtils.copyFile(sourceFile, destinationFile);
 			XSSFWorkbook workBook;
+			File destinationFile = new File(fileName + ".xlsx");
 			FileInputStream destinationFileStream = new FileInputStream(destinationFile);
 			workBook = new XSSFWorkbook(destinationFileStream);
 			XSSFSheet candidateProfileSheet = workBook.getSheet("Candidate_Profile");

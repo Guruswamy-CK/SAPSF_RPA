@@ -5,11 +5,15 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
 import com.rpa.sapsf.dto.UserDTO;
 import com.rpa.sapsf.service.UserService;
@@ -18,8 +22,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDTO userRegistration(UserDTO user) {
-		File userTable = new File("src\\main\\resources\\templates\\User_Management\\User_Table.xlsx");
 		try {
+			Resource resource = new ClassPathResource("classpath:User_Table.xlsx");
+			InputStream inputStream = resource.getInputStream();
+			File userTable = new File("User_Table.xlsx");
+			FileUtils.copyInputStreamToFile(inputStream, userTable);
 			XSSFWorkbook workBook;
 			FileInputStream userTableStream = new FileInputStream(userTable);
 			workBook = new XSSFWorkbook(userTableStream);

@@ -30,7 +30,7 @@ public class FileController {
 			String fileName = this.businessLogic.directToFileConvertion(file, directionSelected, moduleSelected,
 					modelSelected);
 			if (StringUtils.isNotEmpty(fileName)) {
-				File storedFile = new File("src\\main\\resources\\templates\\" + fileName);
+				File storedFile = new File(fileName);
 				byte[] isr = Files.readAllBytes(storedFile.toPath());
 				ByteArrayOutputStream out = new ByteArrayOutputStream(isr.length);
 				out.write(isr, 0, isr.length);
@@ -54,7 +54,7 @@ public class FileController {
 		try {
 			String fileName = this.businessLogic.directToWbpFileGeneration(file);
 			if (StringUtils.isNotEmpty(fileName)) {
-				File storedFile = new File("src\\main\\resources\\templates\\" + fileName);
+				File storedFile = new File(fileName);
 				byte[] isr = Files.readAllBytes(storedFile.toPath());
 				ByteArrayOutputStream out = new ByteArrayOutputStream(isr.length);
 				out.write(isr, 0, isr.length);
@@ -72,13 +72,13 @@ public class FileController {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@PostMapping("/job-file-generate")
 	public void fileJobGenerate(@RequestParam("file") MultipartFile file, HttpServletResponse response) {
 		try {
 			String fileName = this.businessLogic.directToJobFileGeneration(file);
 			if (StringUtils.isNotEmpty(fileName)) {
-				File storedFile = new File("src\\main\\resources\\templates\\" + fileName);
+				File storedFile = new File(fileName);
 				byte[] isr = Files.readAllBytes(storedFile.toPath());
 				ByteArrayOutputStream out = new ByteArrayOutputStream(isr.length);
 				out.write(isr, 0, isr.length);

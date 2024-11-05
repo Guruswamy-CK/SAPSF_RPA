@@ -106,7 +106,7 @@
 							<resources>
 								<resource>
 									<directory>
-										../SAPSF_RPA_CLIENT/dist</directory>
+										../SAPSF_RPA_CLIENT/dist/sapsf-rpa-client</directory>
 								</resource>
 							</resources>
 						</configuration>
@@ -119,8 +119,8 @@
 				<version>2.11.0</version>
 			    <configuration>
 			        <schemaVersion>v2</schemaVersion>
-			        <resourceGroup>sapsf-rpa-dev</resourceGroup>
-			        <appName>sapsf-rpa-dev</appName>
+			        <resourceGroup>sap-sf-rpa</resourceGroup>
+			        <appName>sap-sf-rpa</appName>
 			        <pricingTier>P1v2</pricingTier>
 			        <region>centralus</region>
 			        <runtime>
@@ -129,21 +129,21 @@
 			            <webContainer>Java SE</webContainer>
 			        </runtime>
 			        <appSettings>
-			            <property>
-			                <name>JAVA_OPTS</name>
-			                <value>-Dserver.port=80</value>
-			            </property>
-			        </appSettings>
-			        <deployment>
-			            <resources>
-			                <resource>
-			                    <directory>${project.basedir}/target</directory>
-			                    <includes>
-			                        <include>*SNAPSHOT.jar</include>
-			                    </includes>
-			                </resource>
-			            </resources>
-			        </deployment>
+						<property>
+							<name>JAVA_OPTS</name>
+							<value>-Dserver.port=80</value>
+						</property>
+					</appSettings>
+					<deployment>
+						<resources>
+							<resource>
+								<directory>${project.basedir}/target</directory>
+								<includes>
+									<include>*SNAPSHOT.jar</include>
+								</includes>
+							</resource>
+						</resources>
+					</deployment>
 			    </configuration>
 			</plugin>
 		</plugins>

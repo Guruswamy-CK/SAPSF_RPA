@@ -106,7 +106,7 @@ public class CommonTemplateUtils {
 			transformer.setOutputProperty(OutputKeys.DOCTYPE_PUBLIC, doctype.getPublicId());
 			transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, doctype.getSystemId());
 			Source docContent = new DOMSource(doc);
-			Result destination = new StreamResult(new File("src\\main\\resources\\templates\\" + fileName + ".xml"));
+			Result destination = new StreamResult(new File(fileName + ".xml"));
 			transformer.transform(docContent, destination);
 		} catch (TransformerConfigurationException e) {
 			// TODO Auto-generated catch block
